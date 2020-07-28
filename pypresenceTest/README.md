@@ -1,4 +1,4 @@
-#about
+# about
 
 Discord IPC wrapper (Rich Presence only supported) on python2.7
 
