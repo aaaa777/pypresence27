@@ -7,7 +7,7 @@ RPC = Presence(737286157456506940)
 
 RPC.connect()
 
-RPC.update(state="三段目表示", details="二段目表示",
+RPC.update(state="三段目表示"#, details="二段目表示",
 		   
 		   # 開始時間 (○時間プレイ中)
 		   #start = int(time.time()),

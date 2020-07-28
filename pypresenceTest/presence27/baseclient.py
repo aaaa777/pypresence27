@@ -4,7 +4,6 @@ import os
 import struct
 import sys
 import tempfile
-import io
 
 from .payloads import Payload
 from .exceptions import *
@@ -20,7 +19,7 @@ class BaseClient(object):
 			self.ipc_path = r'\\.\pipe\discord-ipc-' + str(pipe)
 
 		#connect to named pipe
-		self.ipc_io = io.open(self.ipc_path, 'r+U', 0)
+		self.ipc_io = open(self.ipc_path, 'r+U', 0)
 		self.client_id = client_id
 		self.io_read_available = False
 
