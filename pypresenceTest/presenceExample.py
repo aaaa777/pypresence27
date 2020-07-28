@@ -10,7 +10,7 @@ RPC.connect()
 RPC.update(state="三段目表示", details="二段目表示",
 		   
 		   # 開始時間 (○時間プレイ中)
-		   start = int(time.time()),
+		   #start = int(time.time()),
 		   
 		   # 終了時間 (残時間表示)
 		   # end = int(time.time()) + 900, 
@@ -25,7 +25,7 @@ RPC.update(state="三段目表示", details="二段目表示",
 		   #match = 'match_secret',
 
 		   # パーティサイズ指定 (分子,分母)
-		   party_size = [1, 3]
+		   #party_size = [1, 3]
 		   )
 
 time.sleep(3600)

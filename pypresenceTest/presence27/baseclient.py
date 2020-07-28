@@ -4,6 +4,7 @@ import os
 import struct
 import sys
 import tempfile
+import io
 
 from .payloads import Payload
 from .exceptions import *
@@ -19,12 +20,18 @@ class BaseClient(object):
 			self.ipc_path = r'\\.\pipe\discord-ipc-' + str(pipe)
 
 		#connect to named pipe
-		self.ipc_io = open(self.ipc_path, 'r+b', 0)
+		self.ipc_io = io.open(self.ipc_path, 'r+U', 0)
 		self.client_id = client_id
+		self.io_read_available = False
 
 
 	def read_output(self):
-		
+
+		# read io protecter
+
+		if self.io_read_available == False:
+			raise
+
 		data = self.ipc_io.read()
 
 		status_code, length = struct.unpack('<II', data[:8])
@@ -37,7 +44,14 @@ class BaseClient(object):
 	def handshake(self):
 
 		self.send_data(0, {'v': 1, 'client_id': self.client_id})
+
+		# read io protecter
+
+		if self.io_read_available == False:
+			raise
+
 		data = self.ipc_io.read()
+
 		code, length = struct.unpack('<ii', data[:8])
 		#if self._events_on:
 			#self.sock_reader.feed_data = self.on_event
@@ -52,5 +66,11 @@ class BaseClient(object):
                 op,
                 len(payload)) +
 			payload.encode('utf-8'))
+
+		# set io readable
+
+		self.io_read_available = True
+
+
 
 

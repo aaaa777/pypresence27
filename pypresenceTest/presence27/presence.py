@@ -32,3 +32,11 @@ class Presence(BaseClient):
 
     def connect(self):
         self.handshake()
+
+    def close(self):
+        self.send_data(2, {'v': 1, 'client_id': self.client_id})
+        self.sock_writer.close()
+
+    def clear(self, pid = os.getpid()):
+        payload = Payload.set_activity(pid, activity=None)
+        self.send_data(1, payload)

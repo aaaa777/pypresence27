@@ -28,6 +28,9 @@
     <Compile Include="presence27\exceptions.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="presence27\ioprotecter.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="presence27\presence.py">
       <SubType>Code</SubType>
     </Compile>
